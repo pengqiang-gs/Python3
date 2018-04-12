@@ -28,7 +28,8 @@ Unicode把所有语言都统一到一套编码中，用两个字节表示一个�
 UTF-8编码是可变长的Unicode编码，如果英文偏多，那么可以节省空间。    
       
 Python3 版本中，字符串是用Unicode编码的，也就是说Python3 版本中的字符串支持多语言。    
-Python3 中提供`ord()`函数获取字符的整数表示，`chr()`函数获取整数对应的字符。  
+Python3 中提供`ord()`函数获取字符的整数表示，`chr()`函数获取整数对应的字符。     
+    
 	>>> ord('x')
 	120
 	>>> ord('爱')
@@ -37,13 +38,16 @@ Python3 中提供`ord()`函数获取字符的整数表示，`chr()`函数获取�
 	'c'
 	>>> chr(30000)
 	'田'
+     
 字符串可以通过`encode(encoding)`函数进行编码为指定的bytes字符。    
+    
 	>>> '你好'.encode('utf-8')
 	b'\xe4\xbd\xa0\xe5\xa5\xbd'
 	>>> 'abc'.encode('utf-8')
 	b'abc'
-
+    
 # list和tuple
+
 ## list
 list 是列表，可以随时添加和删除列表中的元素。   
 函数`len(list)`可以获取列表的长度。    
@@ -52,17 +56,20 @@ list 是列表，可以随时添加和删除列表中的元素。
 函数`list.insert(index, element)`可以给列表制定位置添加元素。    
 函数`list.pop()`可以返回列表末尾的元素，并且删除。    
 函数`list.pop(index)`可以返回列表索引位置的元素，并且删除。    
+
 ## tuple
 tuple 是元组，一经初始化则不可以更改。
 
 # 条件判断
-程序设计的分支结构：`if ... elif ... else ...`。    
+程序设计的分支结构：`if ... elif ... else ...`。     
+    
 	if <condition1>:
 		statement1
 	elif <condition2>:
 		statement2
 	else:
 		statement3
+    
 ## 练习1
 1. 根据BMI公式（体重除以身高的平方）计算BMI指数，并且根据BMI指数进行以下提示：    
 * 低于18.5： 过轻
