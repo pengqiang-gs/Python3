@@ -1,0 +1,10 @@
+# This file is configured to ignore files and directories for git commiting.
+
+# ignore .pyc files
+*.pyc
+
+# ignore .pkl files
+*.pkl
+
+# ignore cache file
+*/__pycache__/*
