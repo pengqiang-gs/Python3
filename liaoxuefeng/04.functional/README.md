@@ -87,8 +87,40 @@ Python内建的`sorted()`函数可以给一个序列排序，函数的第一个�
 以上问题的原因：就是闭包中的函数在调用时才执行，调用时循环变量`item`都已经变成了`3`，那么结果就是`9`。    
 因此，闭包中的函数尽量不引用循环变量，如果非要引用，外层需要新增加另外一个函数作为过渡。    
 
+## 装饰器
+前面已经说过，Python中函数也是一个对象，每个函数有个`__name__`属性，指示自己的名称。    
+需要增强函数的功能，同时又不改变函数的定义，动态增强函数功能的部件，称之为装饰器`Decorator`。    
+本质上，装饰器就是一个返回函数的高阶函数。   
+
+	def log(func):
+		def wrapper(*args, **kw):
+			print('call ', func.__name__)
+			return func(args, kw)
+		return wrapper
+
+上面这种方式，就形成了一个装饰器。    
+原有的函数`func`继续执行自己本身，`wrapper`来增强`func`的功能：打印调用轨迹。    
+调用装饰器时，用到Python的`@`装饰器方式，将装饰器置于函数的定义处。    
+
+	@log
+	def hello():
+		return 'hello'
+
+经过装饰器装饰过的函数，就上面这个例子来说，`hello.__name__`已经变成了`wrapper`。    
+这样函数名称发生了变化，那代码中有依赖函数签名的地方会报错，因此有了`functools.wraps`。    
+上面的代码用`functools.wraps`变更如下：    
+
+	import functools
+	def log(func):
+		@functools.wraps(func)
+		def wrapper(*args, **kw):
+			print('call ', func.__name__)
+			return func(args, kw)
+		return wrapper
+
 ## 练习
 1. 用`map()`函数将list中的字符串首字母大写。
 2. 用`map()`和`reduce()`函数实现字符串转换成浮点型数字。
 3. 用`filter()`函数筛选出一个列表中的回数【回数就是从左向右还是从右向左读都一样的数字，比如12321】。
 4. 用闭包实现一个计数器。
+5. 设计一个装饰器，作用于任何函数之上，打印出该函数执行的时间。    
