@@ -137,7 +137,6 @@ Python的`functools`提供了很多有用的函数，其中一个是偏函数（
 			print('call ', func.__name__)
 			return func(args, kw)
 		return wrapper
->>>>>>> 994ae9e1685fc8d80a4106869faaad3627883288
 
 ## 练习
 1. 用`map()`函数将list中的字符串首字母大写。
