@@ -21,6 +21,7 @@ Python有很多内置的模块，可以很方便的进行使用。
 
 ### namedtuple
 `namedtuple`是一个函数，专门用来创建一个自定义的tuple类对象，并且规定tuple元素的个数。    
+    
 	>>> from collections import namedtuple
 	>>> Circle = namedtuple('Curcle', ['radius'])
 	>>> c = Circle(2)
@@ -34,6 +35,7 @@ Python有很多内置的模块，可以很方便的进行使用。
 `deque.appendleft()`函数在`deque`的头部进行插入。    
 `deque.pop()`函数在`deque`的尾部进行删除。    
 `deque.popright()`函数在`deque`的头部进行删除。    
+
 	>>> from collections import deque
 	>>> queue = deque([1, 2, 3])
 	>>> queue
@@ -54,7 +56,9 @@ Python有很多内置的模块，可以很方便的进行使用。
 	deque([1, 2, 3])
 
 ### defaultdict
-`dict`如果`key`不存在，会抛出`KeyError`的异常，如果不想要异常，可以使用`defaultdict`进行不存在的`key`值默认值设定。    
+`dict`如果`key`不存在，会抛出`KeyError`的异常。     
+如果不想要异常，可以使用`defaultdict`进行不存在的`key`值默认值设定。        
+    
 	>>> from collections import defaultdict
 	>>> d = defaultdict(lambda: 'NULL')
 	>>> d['key1'] = 'value1'
@@ -69,6 +73,7 @@ Python有很多内置的模块，可以很方便的进行使用。
 
 ### Counter
 `Counter`是一个简单的计数器。    
+    
 	>>> from collections import Counter
 	>>> cc = Counter()
 	>>> for item in 'hello world':
@@ -89,6 +94,7 @@ Python有很多内置的模块，可以很方便的进行使用。
 4. 二进制数据全部按照上面的步骤1-3处理完毕之后的字符串就是`Base64`编码后的字符串。    
 
 `Base64`编码把原来二进制文件中3个字符的文件编码成4个字符，因此长度增加了1/3，不过编码后的二进制文件内容可以直接传输使用。如果编码的文件长度不是3的倍数，`Base64`会用`\x00`字节在末尾补齐，编码之后的末尾加上1个或者两个`=`号，表示最后编码补齐了几位，解码的时候，会自动去掉结尾补加的`=`。    
+
 	>>> import base64
 	>>> base64.b64encode(b'hello world')
 	b'aGVsbG8gd29ybGQ='
@@ -104,12 +110,15 @@ Python的`hashlib`模块提供了常见的摘要算法，比如`MD5`，`SHA1`等
 
 ### MD5
 MD5是最常见的摘要算法，速度很快，生成结果是固定的128bit长度的16进制字符串。     
+
 	>>> import hashlib
 	>>> md5 = hashlib.md5()
 	>>> md5.update('hello world'.encode('utf-8'))
 	>>> md5.hexdigest()
 	'5eb63bbbe01eeed093cb22bb8f5acdc3'
+	
 MD5如果数据内容太长，也可以用多次`update()`，结果是一样的。    
+    
 	>>> md5 = hashlib.md5()
 	>>> md5.update('hello '.encode('utf-8'))
 	>>> md5.update('world'.encode('utf-8'))
@@ -118,6 +127,7 @@ MD5如果数据内容太长，也可以用多次`update()`，结果是一样的�
 
 ### SHA1
 SHA1和MD5调用的方法类似，结果是160bit长度的16进制字符串。     
+    
 	>>> sha1 = hashlib.sha1()
 	>>> sha1.update('hello world'.encode('utf-8'))
 	>>> sha1.hexdigest()
@@ -126,6 +136,7 @@ SHA1和MD5调用的方法类似，结果是160bit长度的16进制字符串。
 ## hmac
 通过哈希算法，可以验证一段数据是否有效，就是比对哈希值。    
 hmac算法就是在计算哈希的过程中，把key值混入计算，比我们自己加`salt`的哈希算法更标准安全。    
+	
 	>>> import hmac
 	>>> key = b'salt'
 	>>> message = b'hello world'
@@ -138,6 +149,7 @@ urllib提供了一系列用于操作URL的功能。
 
 ### Get
 urllib的`request`模块可以非常方便的抓取URL内容，也就是发送GET请求到指定的页面，然后返回HTTP响应。    
+	
 	>>> import urllib
 	>>> url = 'https://baike.baidu.com/item/hello%20world/85501?fr=aladdin'
 	>>> from urllib import request
@@ -150,6 +162,7 @@ urllib的`request`模块可以非常方便的抓取URL内容，也就是发送GE
 	...
 
 返回的内容（网页内容太多，省略显示）：     
+	
 	Status:  200 OK
 	Content-Type: text/html
 	Date: Fri, 08 Jun 2018 09:28:50 GMT
@@ -190,6 +203,7 @@ Python中用SAX解析XML需要关心的事件：
 
 ## 练习
 1. 用SAX模式解析下面的XML：    
+	
 	<?xml version="1.0" encoding="UTF-8"?>
 	<section name="SearchInDialog">
 		<item value="true" key="SearchInProjects"/>
